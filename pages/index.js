@@ -1,65 +1,56 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react"
+import {useState} from 'react'
+import Creature from 'src/components/rawDisplay/Creature'
+import CreatureOptions from 'src/components/options/CreatureOptions'
+
 
 export default function Home() {
+  const [creatingCreature, setCreatingCreature] = useState(false)
+  const [creatingEntity, setCreatingEntity] = useState(false)
+  const [creatingMetal, setCreatingMetal] = useState(false)
+  const [creatingWeapon, setCreatingWeapon] = useState(false)
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <Flex direction="column" width="100vw">
+      <Flex backgroundColor="#cbffcb" alignItems="center" justifyContent="center" height="12vh" width="100VW">
+        <Heading>Spleggoths Raw GUI</Heading>
+      </Flex>
+      <Flex justifyContent="space-evenly" alignItems="center" width="100vw" height="12vh">
+        <Button onClick={() => {setCreatingCreature(!creatingCreature)}} colorScheme={creatingCreature ? "green" : "gray"}>
+          Creature
+        </Button>
+        <Button onClick={() => {setCreatingEntity(!creatingEntity)}} colorScheme={creatingEntity ? "cyan" : "gray"}>
+          Entity
+        </Button>
+        <Button onClick={() => {setCreatingMetal(!creatingMetal)}} colorScheme={creatingMetal ? "red" : "gray"}>
+          Metal
+        </Button>
+        <Button onClick={() => {setCreatingWeapon(!creatingWeapon)}} colorScheme={creatingWeapon ? "purple" : "gray"}>
+          Weapon
+        </Button>
+      </Flex>
+      {creatingCreature ? 
+      <Flex direction="column">
+        <CreatureOptions />
+        <Creature/>
+        </Flex>
+        : null}
+         {creatingEntity ? 
+      <Flex>
+        
+        </Flex>
+        : null}
+         {creatingMetal ? 
+      <Flex>
+        
+        </Flex>
+        : null}
+         {creatingWeapon ? 
+      <Flex>
+        
+        </Flex>
+        : null}
+    </Flex>
   )
 }
