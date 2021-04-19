@@ -27,7 +27,7 @@ export default function Home() {
           Metal
         </Button>
         <Button onClick={() => {setCreatingWeapon(!creatingWeapon)}} colorScheme={creatingWeapon ? "purple" : "gray"}>
-          Weapon
+          Weapons
         </Button>
       </Flex>
       {creatingCreature ? 
