@@ -8,7 +8,7 @@ export default function Creature () {
         <Flex direction="column" width="75vw" margin="auto" padding="2rem" border="2px lightgrey solid">
             <Text>[CREATURE: {creatureField.creatureName.split(' ').join('_').toUpperCase()}]</Text>
             <Text>[DESCRIPTION: {creatureField.description.toLowerCase()}]</Text>
-            {creatureField.casteName != "" ? <Text>[CASTE_NAME: {creatureField.creatureName.toLowerCase()}]</Text> : null}
+            <Text>[NAME: {creatureField.name.toLowerCase()}:{creatureField.nameMultiple.toLowerCase()}:{creatureField.nameDescription.toLowerCase()}]</Text>
             {creatureField.intelligent ? <Text>[INTELLIGENT]</Text> : null}
             {creatureField.moods ? <Text>[STRAINGE_MOODS]</Text> : null}
             {creatureField.trances ? <Text>[TRANCES]</Text> : null}

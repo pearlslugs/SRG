@@ -3,7 +3,9 @@ import { atom } from 'jotai'
 
 export const creatureFieldAtom = atom({
     creatureName: "",
-    casteName: "",
+    name: "",
+    nameMultiple: "",
+    nameDescription: "",
     gait: "",
     description: "",
     intelligent: null,

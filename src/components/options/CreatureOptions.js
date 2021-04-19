@@ -6,7 +6,7 @@ export default function Creature () {
 
     const [creatureField, setCreatureField] = useAtom(creatureFieldAtom)
 
-    function changeName (e) {
+    function changeCodeName (e) {
     setCreatureField( creatureField => {
         return { ...creatureField, creatureName: e.target.value}
     })
@@ -18,19 +18,19 @@ export default function Creature () {
         })
         }
 
-    function changeCasteName (e) {
+    function changeName (e) {
     setCreatureField( creatureField => {
-        return { ...creatureField, casteName: e.target.value}
+        return { ...creatureField, name: e.target.value}
     })
     }
-    function changeCasteNamePlural (e) {
+    function changeNamePlural (e) {
         setCreatureField( creatureField => {
-            return { ...creatureField, castNameMultiple: e.target.value}
+            return { ...creatureField, nameMultiple: e.target.value}
         })
         }
-        function changeCasteNameDescription (e) {
+        function changeNameDescription (e) {
             setCreatureField( creatureField => {
-                return { ...creatureField, castNameDescription: e.target.value}
+                return { ...creatureField, nameDescription: e.target.value}
             })
             }
     function changeStandardMats (e) {
@@ -43,15 +43,15 @@ export default function Creature () {
     return(
         <Flex width="100%" minHeight="25vh" direction="column" alignItems="center" justifyContent="space-evenly">
             <Text fontSize="3xl">Creature Title Code</Text>
-            <Input width="20vw" onChange={changeName} />
+            <Input width="20vw" onChange={changeCodeName} />
             <Text fontSize="3xl">Creature Description</Text>
             <Input width="40vw" onChange={changeDescritpion} />
             <Text fontSize="3xl">Name ex: dwarf</Text>
-            <Input width="20vw" onChange={changeCasteName} />
+            <Input width="20vw" onChange={changeName} />
             <Text fontSize="3xl">Name Multiple ex: dwarves</Text>
-            <Input width="20vw" onChange={changeCasteNamePlural} />
+            <Input width="20vw" onChange={changeNamePlural} />
             <Text fontSize="3xl">Name Description ex: dwarven</Text>
-            <Input width="20vw" onChange={changeCasteNameDescription} />
+            <Input width="20vw" onChange={changeNameDescription} />
             <Text fontSize="3xl">Body type</Text>
             <RadioGroup defaultValue="biped">
             <Stack spacing={4} direction="row">
