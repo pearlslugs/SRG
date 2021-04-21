@@ -6,6 +6,7 @@ import Creature from "src/components/rawDisplay/Creature";
 import CreatureOptions from "src/components/options/CreatureOptions";
 import Weapon from "src/components/rawDisplay/Weapon";
 import WeaponOptions from "src/components/options/WeaponOptions";
+import SignUpModal from 'src/components/modals/SignUpModal'
 
 export default function Home() {
   const [creatingCreature, setCreatingCreature] = useState(false);
@@ -18,10 +19,14 @@ export default function Home() {
         backgroundColor="#cbffcb"
         alignItems="center"
         justifyContent="center"
-        height="12vh"
+        minHeight="14vh"
         width="100VW"
+        direction="column"
       >
-        <Heading>Spleggoths Raw GUI</Heading>
+        <Heading marginTop="2rem">Spleggoths Raw GUI</Heading>
+        <Flex width="95vw" margin="auto" alignItems="flex-end" justifyContent="flex-end">
+          <SignUpModal />
+        </Flex>
       </Flex>
 
       <Flex
