@@ -39,7 +39,7 @@ export default function SignU()  {
               <Button colorScheme="gray" mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button type="submit" colorScheme="purple">Finish Attack</Button>
+              <Button type="submit" colorScheme="purple">Sign Up</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
