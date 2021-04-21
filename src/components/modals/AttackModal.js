@@ -38,7 +38,7 @@ export default function AttackModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button width="auto" onClick={onOpen}>Add Attack</Button>
+      <Button marginTop="2rem" width="fit-content" onClick={onOpen}>Add Attack</Button>
 
       <Modal width="75vw" height="60vh" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

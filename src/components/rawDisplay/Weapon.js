@@ -10,6 +10,12 @@ export default function Weapon() {
       return { ...weaponField, attacks: newAttacks };
   })
 }
+function removeAmmoAttack (id) {
+  const newAttacks = weaponField?.attacks.filter(attack => attack.id != id )
+  setWeaponField((weaponField) => {
+    return { ...weaponField, ammoAttacks: newAttacks };
+})
+}
   return (
     <Flex
       direction="column"
@@ -45,7 +51,7 @@ export default function Weapon() {
               {attack.velocityMultiplier}]
             </Text>
             <Text marginLeft="3rem">
-              [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}
+              [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
             </Text>
             </Flex>
             <Button width="1rem" colorScheme="red" onClick={() => removeAttack(attack.id)}>x</Button>
@@ -70,6 +76,23 @@ export default function Weapon() {
           <Text>[SIZE:{weaponField.ammoSize}]</Text>
         </Flex>
       ) : null}
+       {weaponField?.ammoAttacks?.map((attack) => {
+        return (
+          <Flex key={attack.id} direction="row" width="75vw" margin="auto">
+            <Flex direction="column" minWidth="60%">
+            <Text>
+              [ATTACK:{attack.type}:{attack.size}:{attack.penetration}:
+              {attack.attackName}:{attack.attackNamePlural}:NO_SUB:
+              {attack.velocityMultiplier}]
+            </Text>
+            <Text marginLeft="3rem">
+              [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
+            </Text>
+            </Flex>
+            <Button width="1rem" colorScheme="red" onClick={() => removeAmmoAttack(attack.id)}>x</Button>
+          </Flex>
+        );
+      })}
     </Flex>
   );
 }
