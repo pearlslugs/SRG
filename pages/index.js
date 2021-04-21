@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Flex direction="column" width="100vw">
       <Flex
-        backgroundColor="#cbffcb"
+        backgroundColor="#ed675f"
         alignItems="center"
         justifyContent="center"
         minHeight="14vh"
