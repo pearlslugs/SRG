@@ -38,7 +38,7 @@ import {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
       <>
-        <Button width="10vw" marginTop="2rem" onClick={onOpen}>Add Ammo Attack</Button>
+        <Button width="auto" marginTop="2rem" onClick={onOpen}>Add Ammo Attack</Button>
   
         <Modal width="75vw" height="60vh" isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
