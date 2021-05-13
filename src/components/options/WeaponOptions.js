@@ -8,11 +8,12 @@ import {
   Text,
   Stack,
   Input,
+  Button,
 } from "@chakra-ui/react";
 import { weaponFieldAtom } from "src/lib/utils/atomDeclarations";
 import { useAtom } from "jotai";
 import AttackModal from "src/components/modals/AttackModal";
-import AmmoAttackModal from "src/components/modals/AmmoAttackModal"
+import AmmoAttackModal from "src/components/modals/AmmoAttackModal";
 
 export default function Weapon() {
   const [weaponField, setWeaponField] = useAtom(weaponFieldAtom);
@@ -94,7 +95,7 @@ export default function Weapon() {
     });
   }
   return (
-    <Flex width="100vw" direction="row" marginBottom="3rem">
+    <Flex width="100vw" className="row-to-column-flex" marginBottom="3rem">
       <Flex
         width="45%"
         marginLeft="15vw"
@@ -106,19 +107,32 @@ export default function Weapon() {
         <Input width="20vw" onChange={changeCodeName} />
         <Text fontSize="2xl">Weapon Type</Text>
         <RadioGroup defaultValue="melee">
-          <Radio marginRight="2rem" value="melee" onChange={() => switchWeaponType(false)}>
+          <Radio
+            colorScheme="purple"
+            marginRight="2rem"
+            value="melee"
+            onChange={() => switchWeaponType(false)}
+          >
             melee
           </Radio>
-          <Radio value="ranged" onChange={() => switchWeaponType(true)}>
+          <Radio
+            colorScheme="purple"
+            value="ranged"
+            onChange={() => switchWeaponType(true)}
+          >
             ranged
           </Radio>
         </RadioGroup>
         <Text fontSize="2xl">Name ex: sword</Text>
-        <Input width="20vw" onChange={changeName} />
+        <Input width="20vw" value={weaponField.name} onChange={changeName} />
         <Text fontSize="2xl">Name Multiple ex: swords</Text>
-        <Input width="20vw" onChange={changeNamePlural} />
+        <Input
+          value={weaponField.namePlural}
+          width="20vw"
+          onChange={changeNamePlural}
+        />
         <Text fontSize="2xl">Size</Text>
-        <Input width="20vw" onChange={changeSize} />
+        <Input value={weaponField.size} width="20vw" onChange={changeSize} />
         <Text fontSize="2xl">Skill</Text>
         <Input width="20vw" onChange={changeSkill} />
         <Text fontSize="2xl">Size Required To Weild With One Hand</Text>
@@ -127,30 +141,34 @@ export default function Weapon() {
         <Input width="20vw" onChange={changeMinSize} />
         <Text fontSize="2xl">How Many Bars To Create</Text>
         <Input width="20vw" onChange={changeMatSize} />
-        {weaponField.ranged ? <>
-          <Text fontSize="2xl">ranged skill(must be BOW or CROSSBOW)</Text>
-          <Input width="20vw" onChange={changeRangedSkill} />
-        </> : null}
+        {weaponField.ranged ? (
+          <>
+            <Text fontSize="2xl">ranged skill(must be BOW or CROSSBOW)</Text>
+            <Input width="20vw" onChange={changeRangedSkill} />
+          </>
+        ) : null}
         <AttackModal />
-        </Flex>
-        {weaponField.ranged ? 
-        <Flex
-        width="45%"
-        minHeight="25vh"
-        direction="column"
-        justifyContent="space-evenly"
-      >
-        <Text fontSize="2xl">Ammo Name Code</Text>
-        <Input width="20vw" onChange={changeAmmoCodeName} />
-        <Text fontSize="2xl">Name ex: arrow</Text>
-        <Input width="20vw" onChange={changeAmmoName} />
-        <Text fontSize="2xl">Name Multiple ex: arrows</Text>
-        <Input width="20vw" onChange={changeAmmoNamePlural} />
-        <Text fontSize="2xl">Ammo Class ex: BOLT</Text>
-        <Input width="20vw" onChange={changeAmmoClass} />
-        <Text fontSize="2xl">Size</Text>
-        <Input width="20vw" onChange={changeAmmoSize} />
-        <AmmoAttackModal /> </Flex> : null}
       </Flex>
+      {weaponField.ranged ? (
+        <Flex
+          width="45%"
+          minHeight="25vh"
+          direction="column"
+          justifyContent="space-evenly"
+        >
+          <Text fontSize="2xl">Ammo Name Code</Text>
+          <Input width="20vw" onChange={changeAmmoCodeName} />
+          <Text fontSize="2xl">Name ex: arrow</Text>
+          <Input width="20vw" onChange={changeAmmoName} />
+          <Text fontSize="2xl">Name Multiple ex: arrows</Text>
+          <Input width="20vw" onChange={changeAmmoNamePlural} />
+          <Text fontSize="2xl">Ammo Class ex: BOLT</Text>
+          <Input width="20vw" onChange={changeAmmoClass} />
+          <Text fontSize="2xl">Size</Text>
+          <Input width="20vw" onChange={changeAmmoSize} />
+          <AmmoAttackModal />{" "}
+        </Flex>
+      ) : null}
+    </Flex>
   );
 }

@@ -1,21 +1,22 @@
 import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
 import { weaponFieldAtom } from "src/lib/utils/atomDeclarations";
 import { useAtom } from "jotai";
+import { ImCross } from "react-icons/im";
 
 export default function Weapon() {
   const [weaponField, setWeaponField] = useAtom(weaponFieldAtom);
-  function removeAttack (id) {
-    const newAttacks = weaponField?.attacks.filter(attack => attack.id != id )
+  function removeAttack(id) {
+    const newAttacks = weaponField?.attacks.filter((attack) => attack.id != id);
     setWeaponField((weaponField) => {
       return { ...weaponField, attacks: newAttacks };
-  })
-}
-function removeAmmoAttack (id) {
-  const newAttacks = weaponField?.attacks.filter(attack => attack.id != id )
-  setWeaponField((weaponField) => {
-    return { ...weaponField, ammoAttacks: newAttacks };
-})
-}
+    });
+  }
+  function removeAmmoAttack(id) {
+    const newAttacks = weaponField?.attacks.filter((attack) => attack.id != id);
+    setWeaponField((weaponField) => {
+      return { ...weaponField, ammoAttacks: newAttacks };
+    });
+  } //TODO: use refs to copy text
   return (
     <Flex
       direction="column"
@@ -25,7 +26,8 @@ function removeAmmoAttack (id) {
       border="2px lightgrey solid"
     >
       <Text>
-        [ITEM_WEAPON:ITEM_WEAPON_{weaponField.itemCode.split(" ").join("_").toUpperCase()}]
+        [ITEM_WEAPON:ITEM_WEAPON_
+        {weaponField.itemCode.split(" ").join("_").toUpperCase()}]
       </Text>
       <Text>
         [NAME: {weaponField.name.toLowerCase()}:
@@ -45,28 +47,36 @@ function removeAmmoAttack (id) {
         return (
           <Flex key={attack.id} direction="row" width="75vw" margin="auto">
             <Flex direction="column" minWidth="60%">
-            <Text>
-              [ATTACK:{attack.type}:{attack.size}:{attack.penetration}:
-              {attack.attackName}:{attack.attackNamePlural}:NO_SUB:
-              {attack.velocityMultiplier}]
-            </Text>
-            <Text marginLeft="3rem">
-              [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
-            </Text>
+              <Text>
+                [ATTACK:{attack.type}:{attack.size}:{attack.penetration}:
+                {attack.attackName}:{attack.attackNamePlural}:NO_SUB:
+                {attack.velocityMultiplier}]
+              </Text>
+              <Text marginLeft="3rem">
+                [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
+              </Text>
             </Flex>
-            <Button width="1rem" colorScheme="red" onClick={() => removeAttack(attack.id)}>x</Button>
+            <Button
+              width="1rem"
+              colorScheme="red"
+              onClick={() => removeAttack(attack.id)}
+            >
+              <Text marginTop="-1rem" color="red">
+                <ImCross />
+              </Text>
+            </Button>
           </Flex>
         );
       })}
-      
+
       {weaponField.ranged ? (
         <Flex margin="auto" marginTop="3rem" direction="column" width="75vw">
           <Text marginBottom="3rem" fontSize="2xl">
-        Ammo for your launcher
-      </Text>
+            Ammo for your launcher
+          </Text>
           <Text>
-            [ITEM_AMMO:ITEM_AMMO_{weaponField.ammoCode.split(" ").join("_").toUpperCase()}
-            ]
+            [ITEM_AMMO:ITEM_AMMO_
+            {weaponField.ammoCode.split(" ").join("_").toUpperCase()}]
           </Text>
           <Text>
             [NAME: {weaponField.ammoName.toLowerCase()}:
@@ -76,20 +86,28 @@ function removeAmmoAttack (id) {
           <Text>[SIZE:{weaponField.ammoSize}]</Text>
         </Flex>
       ) : null}
-       {weaponField?.ammoAttacks?.map((attack) => {
+      {weaponField?.ammoAttacks?.map((attack) => {
         return (
           <Flex key={attack.id} direction="row" width="75vw" margin="auto">
             <Flex direction="column" minWidth="60%">
-            <Text>
-              [ATTACK:{attack.type}:{attack.size}:{attack.penetration}:
-              {attack.attackName}:{attack.attackNamePlural}:NO_SUB:
-              {attack.velocityMultiplier}]
-            </Text>
-            <Text marginLeft="3rem">
-              [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
-            </Text>
+              <Text>
+                [ATTACK:{attack.type}:{attack.size}:{attack.penetration}:
+                {attack.attackName}:{attack.attackNamePlural}:NO_SUB:
+                {attack.velocityMultiplier}]
+              </Text>
+              <Text marginLeft="3rem">
+                [ATTACK_PREPARE_AND_RECOVER:{attack.attackprepareAndRecover}]
+              </Text>
             </Flex>
-            <Button width="1rem" colorScheme="red" onClick={() => removeAmmoAttack(attack.id)}>x</Button>
+            <Button
+              width="1rem"
+              colorScheme="red"
+              onClick={() => removeAmmoAttack(attack.id)}
+            >
+              <Text marginTop="-1rem" color="red">
+                <ImCross />
+              </Text>
+            </Button>
           </Flex>
         );
       })}

@@ -57,24 +57,24 @@ export default function Creature() {
         direction="column"
         justifyContent="space-evenly"
       >
-        <Text fontSize="3xl">Creature Title Code</Text>
+        <Text fontSize="2xl">Creature Title Code</Text>
         <Input width="20vw" onChange={changeCodeName} />
-        <Text fontSize="3xl">Creature Description</Text>
+        <Text fontSize="2xl">Creature Description</Text>
         <Input width="40vw" onChange={changeDescritpion} />
-        <Text fontSize="3xl">Name ex: dwarf</Text>
+        <Text fontSize="2xl">Name ex: dwarf</Text>
         <Input width="20vw" onChange={changeName} />
-        <Text fontSize="3xl">Name Multiple ex: dwarves</Text>
+        <Text fontSize="2xl">Name Multiple ex: dwarves</Text>
         <Input width="20vw" onChange={changeNamePlural} />
-        <Text fontSize="3xl">Name Description ex: dwarven</Text>
+        <Text fontSize="2xl">Name Description ex: dwarven</Text>
         <Input width="20vw" onChange={changeNameDescription} />
-        <Text fontSize="3xl">Body type</Text>
+        <Text fontSize="2xl">Body type</Text>
         <RadioGroup defaultValue="biped">
           <Stack spacing={4} direction="row">
             <Radio value="biped">Biped</Radio>
             <Radio value="quadriped">Quadriped</Radio>
           </Stack>
         </RadioGroup>
-        <Text fontSize="3xl">Creature Intelligence</Text>
+        <Text fontSize="2xl">Creature Intelligence</Text>
         <CheckboxGroup>
           <Checkbox>intelligent</Checkbox>
           <Checkbox>can learn</Checkbox>
@@ -95,7 +95,7 @@ export default function Creature() {
         </CheckboxGroup>
       </Flex>
       <Flex minHeight="25vh" direction="column" justifyContent="space-evenly">
-        <Text fontSize="3xl">Tissue</Text>
+        <Text fontSize="2xl">Tissue</Text>
         <Stack spacing={4} direction="row">
           <Checkbox defaultIsChecked={true} onChange={changeStandardMats}>
             {/* go through detail plan*/}
@@ -107,7 +107,7 @@ export default function Creature() {
           <Checkbox>scales</Checkbox>
           <Checkbox>chitin</Checkbox>
         </CheckboxGroup>
-        <Text fontSize="3xl">Body</Text>
+        <Text fontSize="2xl">Body</Text>
         <CheckboxGroup>
           <Checkbox defaultIsChecked={true} onChange={changeStandardMats}>
             {/* go through detail plan*/}
@@ -131,7 +131,7 @@ export default function Creature() {
           <Checkbox>pincer</Checkbox>
           <Checkbox>rear legs</Checkbox>
         </CheckboxGroup>
-        <Text fontSize="3xl">Interatctions</Text>
+        <Text fontSize="2xl">Interatctions</Text>
         <CheckboxGroup>
           <Checkbox>spits</Checkbox>
           <Checkbox>pets animal</Checkbox>

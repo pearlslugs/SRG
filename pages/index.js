@@ -6,7 +6,10 @@ import Creature from "src/components/rawDisplay/Creature";
 import CreatureOptions from "src/components/options/CreatureOptions";
 import Weapon from "src/components/rawDisplay/Weapon";
 import WeaponOptions from "src/components/options/WeaponOptions";
-import SignUpModal from 'src/components/modals/SignUpModal'
+import Entity from "src/components/rawDisplay/Entity";
+import EntityOptions from "src/components/options/EntityOptions";
+import SignUpModal from "src/components/modals/SignUpModal";
+import LoginModal from "src/components/modals/LoginModal";
 
 export default function Home() {
   const [creatingCreature, setCreatingCreature] = useState(false);
@@ -24,8 +27,14 @@ export default function Home() {
         direction="column"
       >
         <Heading marginTop="2rem">Spleggoths Raw GUI</Heading>
-        <Flex width="95vw" margin="auto" alignItems="flex-end" justifyContent="flex-end">
+        <Flex
+          width="95vw"
+          margin="auto"
+          alignItems="flex-end"
+          justifyContent="flex-end"
+        >
           <SignUpModal />
+          <LoginModal />
         </Flex>
       </Flex>
 
@@ -85,8 +94,12 @@ export default function Home() {
           paddingTop="2rem"
           marginTop="2rem"
           width="100vw"
+          direction="column"
           borderTop={creatingCreature ? "2px solid lightgrey" : null}
-        ></Flex>
+        >
+          <EntityOptions />
+          <Entity />
+        </Flex>
       ) : null}
       {creatingMetal ? (
         <Flex

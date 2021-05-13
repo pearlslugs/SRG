@@ -4,3 +4,11 @@
 p {
   color: grey;
 }
+@media screen and (max-width: 1100px) {
+  .row-to-column-flex {
+    flex-direction: column;
+  }
+}
+input {
+  width: 200px !important;
+}

@@ -1,9 +1,18 @@
 import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
-import { creatureFieldAtom } from "src/lib/utils/atomDeclarations";
+import { entityFieldAtom } from "src/lib/utils/atomDeclarations";
 import { useAtom } from "jotai";
 
+import { ImCross } from "react-icons/im";
 export default function Creature() {
-  const [creatureField, setCreatureField] = useAtom(creatureFieldAtom);
+  const [entityField, setEntityField] = useAtom(entityFieldAtom);
+  function removeRace(race) {
+    const newCreatures = entityField?.creature?.filter(
+      (creature) => creature != race
+    );
+    setEntityField((entityField) => {
+      return { ...entityField, creature: newCreatures };
+    });
+  }
   return (
     <Flex
       direction="column"
@@ -13,45 +22,44 @@ export default function Creature() {
       border="2px lightgrey solid"
     >
       <Text>
-        [CREATURE:{" "}
-        {creatureField.creatureName.split(" ").join("_").toUpperCase()}]
+        [ENTITY:{entityField.entityCode.split(" ").join("_").toUpperCase()}]
       </Text>
-      <Text>[DESCRIPTION: {creatureField.description.toLowerCase()}]</Text>
-      <Text>
-        [NAME: {creatureField.name.toLowerCase()}:
-        {creatureField.nameMultiple.toLowerCase()}:
-        {creatureField.nameDescription.toLowerCase()}]
-      </Text>
-      {creatureField.intelligent ? <Text>[INTELLIGENT]</Text> : null}
-      {creatureField.moods ? <Text>[STRAINGE_MOODS]</Text> : null}
-      {creatureField.trances ? <Text>[TRANCES]</Text> : null}
-      {creatureField.benign ? <Text>[BENIGN]</Text> : null}
-      {creatureField.evil ? <Text>[EVIL]</Text> : null}
-      {creatureField.good ? <Text>[GOOD]</Text> : null}
-      {creatureField.utterances ? <Text>[UTTERANCES]</Text> : null}
-      {creatureField.trapAvoid ? <Text>[TRAPAVOID]</Text> : null}
-      {creatureField.bonecarn ? <Text>[BONECARN]</Text> : null}
-      {creatureField.carnivore ? <Text>[CARNIVORE]</Text> : null}
-      {!creatureField.eats ? <Text>[NOEAT]</Text> : null}
-      {!creatureField.drinks ? <Text>[NODRINK]</Text> : null}
-      {creatureField.fleequick ? <Text>[FLEEQUICK]</Text> : null}
-      {creatureField.lockpicker ? <Text>[LOCKPICKER]</Text> : null}
-      {creatureField.nocturnal ? <Text>[NOCTURNAL]</Text> : null}
-      {creatureField.dinural ? <Text>[DINURAL]</Text> : null}
-      {creatureField.canOpenDoors ? <Text>[CANOPENDOORS]</Text> : null}
-      <Text>[PREFSTRING:{creatureField.perfString}]</Text>
-      {creatureField.isStandardBody ? (
-        <Text>[{creatureField.standardBody}]</Text>
+      {entityField?.creature?.map((creature) => {
+        return (
+          <Flex>
+            <Text>[CREATURE:{creature}]</Text>{" "}
+            <Button
+              colorScheme="none"
+              marginLeft="1rem"
+              onClick={() => removeRace(creature)}
+            >
+              <Text marginTop="-1rem" color="red">
+                <ImCross />
+              </Text>
+            </Button>
+          </Flex>
+        );
+      })}
+      {entityField.controllable ? (
+        <>
+          <Text>[SITE_CONTROLLABLE]</Text>
+          <Text>[ALL_MAIN_POPS_CONTROLLABLE]</Text>
+        </>
       ) : null}
-      {creatureField.isStandard
-        ? creatureField.standard.map((item) => {
-            return <Text>[BODY_DETAIL_PLAN:{item.toUpperCase()}]</Text>;
-          })
-        : null}
-      <Text>[DESCRIPTION: {creatureField.creatureName.toLowerCase()}]</Text>
-      <Text>[DESCRIPTION: {creatureField.creatureName.toLowerCase()}]</Text>
-      <Text>[DESCRIPTION: {creatureField.creatureName.toLowerCase()}]</Text>
-      <Text>[DESCRIPTION: {creatureField.creatureName.toLowerCase()}]</Text>
+      <Text>[TRANSLATION:{entityField.translation}]</Text>
+      <Text>[DIGGER:ITEM_WEAPON_PICK]</Text>
+      {entityField?.weapons?.map((weapon) => {
+        return (
+          <>
+            <Text>[WEAPON:ITEM_WEAPON_{weapon.name.toUpperCase()}]</Text>
+            {weapon.ranged == true ? (
+              <Text marginLeft="5rem">
+                [AMMO:ITEM_AMMO_{weapon.ammo.toUpperCase()}]
+              </Text>
+            ) : null}
+          </>
+        );
+      })}
     </Flex>
   );
 }

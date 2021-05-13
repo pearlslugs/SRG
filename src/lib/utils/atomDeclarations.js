@@ -46,7 +46,7 @@ export const creatureFieldAtom = atom({
 export const entityFieldAtom = atom({
   entityCode: "",
   controllable: true,
-  creature: "",
+  creature: [],
   translation: "",
   weapons: [],
   ammo: [],
